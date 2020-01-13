@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="myfield"/>
+  <!-- add our web resources -->
+  <web-resource key="myfield-resources" name="myfield Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="myfield.css" location="/css/myfield.css"/>
+    <resource type="download" name="myfield.js" location="/js/myfield.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>myfield</context>
+  </web-resource>
+  <customfield-type name="Remaining Time Custom Field" i18n-name-key="remaining-time-custom-field.name" key="remaining-time-custom-field" class="com.tc.jira.customfields.cf.RemainingTimeCustomField">
+    <description key="remaining-time-custom-field.description">The Remaining Time Custom Field Plugin</description>
+    <resource name="view" type="velocity" location="/templates/customfields/remaining-time-custom-field/view.vm"/>
+    <resource name="edit" type="velocity" location="/templates/customfields/remaining-time-custom-field/edit.vm"/>
+  </customfield-type>
+
+  <servlet key="admin-servlet" class="com.tc.jira.customfield.adminui.AdminServlet">
+    <url-pattern>/myfield/admin</url-pattern>
+  </servlet>
+  <web-section key="myfield-menu-section" location="admin_plugins_menu">
+    <label key="my_new_section_name.label"/>
+    <description key="my_new_section_name.description">myField admin plugin</description>
+  </web-section>
+  <web-item key="mytemplates-menu-item" name="myField Config" section="admin_plugins_menu/myfield-menu-section" weight="95">
+    <description key="myfield-admin-link.description">myField configuration</description>
+    <label key="myfield-admin-link.label"/>
+    <link linkId="myfield-admin-link">/plugins/servlet/myfield/admin</link>
+  </web-item>
+  <rest key="rest" path="/myfield" version="1.0">
+    <description>myTemplates internal REST.</description>
+  </rest>
+</atlassian-plugin>

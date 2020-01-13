@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>MyTemplates Admin</title>
+    <meta name="decorator" content="atl.admin">
+    $webResourceManager.requireResource("com.tc.jira.customfield.myfield:myfield-resources")
+  </head>
+  <body>
+  <form id="admin" class="aui">
+    <div class="field-group">
+      <label for="customField1">Custom Field</label>
+      <input type="text" id="customField1" name="name" class="text" style="vertical-align: bottom;">
+    </div>
+     <div class="field-group">
+       <input type="submit" value="Save" class="button">
+     </div>
+  </form>
+  </body>
+</html>

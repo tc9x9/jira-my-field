@@ -1,0 +1,7 @@
+#if ( $cValue > 0 )
+    $cValue
+#elseif( $cValue == 0 )
+  <span style="color:orange">$cValue</span>
+#elseif( $cValue < 0 )
+  <span style="color:red">$cValue</span>
+#end
